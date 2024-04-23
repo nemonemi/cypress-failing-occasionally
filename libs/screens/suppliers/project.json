@@ -1,0 +1,45 @@
+{
+  "name": "suppliers",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/screens/suppliers/src",
+  "projectType": "library",
+  "tags": ["suppliers"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/libs/screens/suppliers"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "libs/screens/suppliers/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "classification-frontend:serve"
+      }
+    },
+    "configurations": {
+      "production": {
+        "devServerTarget": "classification-frontend:serve:production"
+      },
+      "ci": {
+        "devServerTarget": "classification-frontend:serve-static"
+      }
+    }
+  }
+}

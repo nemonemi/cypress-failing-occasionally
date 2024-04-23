@@ -1,0 +1,36 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+migrations.json
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea/**
+!.idea/watcherTasks.xml
+!.idea/prettier.xml
+!.idea/runConfigurations/**
+classification-frontend.iml
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+npm-debug.log
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Volta
+$HOME
+
+.nx/cache

@@ -1,0 +1,92 @@
+{
+  "name": "classification-frontend",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/classification-frontend"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "classification-frontend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "classification-frontend:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "classification-frontend:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "classification-frontend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "classification-frontend:build:development"
+        },
+        "production": {
+          "buildTarget": "classification-frontend:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "coverage/classification-frontend"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["{projectRoot}/src", "{projectRoot}/utils", "{projectRoot}/types"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "classification-frontend:build"
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "classification-frontend:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "classification-frontend:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "classification-frontend:serve:serve-static"
+        }
+      }
+    }
+  },
+  "tags": []
+}
